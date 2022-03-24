@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 2,
+  "components": [
+    {
+      "label": "JSON first name",
+      "type": "textfield",
+      "id": "Field_0kv1vhz",
+      "key": "JsonCustomer.firstName"
+    },
+    {
+      "label": "java FirstName",
+      "type": "textfield",
+      "id": "Field_0ch8agc",
+      "key": "JavaCustomer.firstName"
+    },
+    {
+      "label": "Customer FirstName",
+      "type": "textfield",
+      "id": "Field_09l2xrm",
+      "key": "customer.firstName"
+    }
+  ],
+  "type": "default",
+  "id": "Form_0fok9ub"
+}

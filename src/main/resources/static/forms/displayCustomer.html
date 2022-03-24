@@ -1,0 +1,63 @@
+<form role="form" name="form">
+    <table class="table">
+        <tr>
+            <td>Customer Json Data</td>
+            <td>
+                <input id="inputFirstnameScopeJson"
+                       type="text"
+                       ng-model="localJsonCustomer.firstName"
+                        />
+            </td>
+        </tr>
+        <tr>
+            <td>Customer Data</td>
+            <td>
+                <input id="inputFirstnameScope"
+                       type="text"
+                       ng-model="localCustomer.firstName"
+                />
+            </td>
+        </tr>
+
+        <tr>
+            <td>Risk level</td>
+            <td>
+                <input id="riskLevel"
+                       type="text"
+                       cam-variable-name="riskLevel"
+                       cam-variable-type="String"
+                       placeholder="RiskLevel"
+                        />
+            </td>
+        </tr>
+    </table>
+    <script cam-script type="text/form-script">
+
+        camForm.on('form-loaded', function() {
+          // fetch the variable named 'customerData'
+           camForm.variableManager.fetchVariable('JsonCustomer');
+           camForm.variableManager.fetchVariable('customer');
+           debugger;
+           camForm.variableManager.fetchVariable('JavaCustomer');
+          });
+
+
+        camForm.on('variables-fetched', function() {
+          // after the variables are fetched, bind the value of customerData to a angular
+          // scope value such that the form can work on it
+          $scope.localJsonCustomer  = camForm.variableManager.variable('JsonCustomer').value;
+          $scope.localCustomer      = camForm.variableManager.variable('customer').value;
+
+        });
+
+         camForm.on('submit', function() {
+            // update the Camunda variable
+            camForm.variableManager.variable('JsonCustomer').value=$scope.localJsonCustomer;
+            camForm.variableManager.variable('customer').value=$scope.localCustomer;
+        });
+
+    </script>
+
+
+
+</form>
