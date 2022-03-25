@@ -90,17 +90,17 @@ ID is       JsonCustomer.firstName
 value is    ${JsonCustomer.firstName}
 
 ## Camunda form
-Form is placed under resources/static/forms. Name is complexVariable/form
-formKey
-NOK /forms/complexeVariable.form    
-NOK complexeVariable.form
+Form is placed under resources/static/forms. Name is complexVariable.form
+Type: Embedded form
+FormKey: camunda-forms:app:forms/complexeVariable.form
 
-NOK camunda-forms:/forms/complexeVariable.form  (https://www.youtube.com/watch?v=QXt5FzW4eMA)
+ATTENTION: you must not choose the "Embedded or task form" type, and not "Camunda-form". 
+If you choose Camunda-form, you have to setup a formId, and give this formId as the reference. 
+Then, the form must be deployed with the process via the REST API or the modeler, and not in a static way.
 
-NOK camunda-forms:app:/forms/complexeVariable.form
-NOK camunda-forms:app:complexeVariable.form (https://github.com/camunda/camunda-bpm-examples/tree/master/usertask/task-camunda-forms)
-NOK app:complexeVariable.form
-NOK app:/forms/complexeVariable.form
+With a Camunda form, this is not possible to reference a variable like "JsonCustomer.firstName". 
+For each information you want to display, you have to create an input (like JsonCustomerFirstName) and populate the 
+input with the expression ${JsonCustomer.firstName}
+On the output, a listener has to be created. Indeed, when "JsonCustomer.firstName" is set as the VariableName, 
+Camunda Engine creates a variable name "JsonCustomer.firstName" and do not populate attribut "firstName" in the "JsonCustomer" variable.
 
-NOK camunda-forms:app:forms/complexeVariable.form
-NOK camunda-forms:forms/complexeVariable.form

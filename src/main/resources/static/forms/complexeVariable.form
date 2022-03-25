@@ -5,21 +5,21 @@
       "label": "JSON first name",
       "type": "textfield",
       "id": "Field_0kv1vhz",
-      "key": "JsonCustomer.firstName"
+      "key": "JsonCustomerFirstName"
     },
     {
       "label": "java FirstName",
       "type": "textfield",
       "id": "Field_0ch8agc",
-      "key": "JavaCustomer.firstName"
+      "key": "JavaCustomerFirstName"
     },
     {
       "label": "Customer FirstName",
       "type": "textfield",
       "id": "Field_09l2xrm",
-      "key": "customer.firstName"
+      "key": "customerFirstName"
     }
   ],
   "type": "default",
-  "id": "Form_0fok9ub"
+  "id": "ComplexVariableId"
 }
