@@ -3,8 +3,11 @@ package org.camunda.complexvariable.c7.delegate;
 import camundajar.impl.com.google.gson.Gson;
 import camundajar.impl.com.google.gson.JsonObject;
 import camundajar.impl.com.google.gson.JsonParser;
+import org.camunda.bpm.engine.HistoryService;
+import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.camunda.bpm.engine.history.HistoricVariableInstanceQuery;
 import org.camunda.bpm.engine.variable.Variables;
 import org.camunda.bpm.engine.variable.value.ObjectValue;
 import org.camunda.complexvariable.c7.data.Customer;
@@ -12,6 +15,9 @@ import org.camunda.complexvariable.c7.data.CustomerUpdate;
 import org.camunda.complexvariable.c7.process.complexvariables.ComplexVariableConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +25,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+@Component
 public class DelegateVariables implements JavaDelegate {
+
+    @Autowired
+    ProcessEngine processEngine;
 
     private static final List<String> riskColors = Arrays.asList("Red", "Blue", "Green", "Orange");
     private final Logger logger = LoggerFactory.getLogger(DelegateVariables.class.getName());
@@ -35,6 +45,13 @@ public class DelegateVariables implements JavaDelegate {
         logs.add(updateJsonBased(delegateExecution));
         logs.add(updateJavaBased(delegateExecution));
         logs.add(updateDirectBased(delegateExecution));
+
+        if (processEngine!=null) {
+            HistoryService historyService = processEngine.getHistoryService();
+
+            HistoricVariableInstanceQuery query = historyService.createHistoricVariableInstanceQuery();
+            query.executionIdIn("a", "b", "c");
+        }
 
         Random r = new Random(System.currentTimeMillis());
 

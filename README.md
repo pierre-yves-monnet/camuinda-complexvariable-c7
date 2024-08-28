@@ -104,3 +104,11 @@ input with the expression ${JsonCustomer.firstName}
 On the output, a listener has to be created. Indeed, when "JsonCustomer.firstName" is set as the VariableName, 
 Camunda Engine creates a variable name "JsonCustomer.firstName" and do not populate attribut "firstName" in the "JsonCustomer" variable.
 
+# Different program
+
+## org.camunda.complexvariable.c7.engine.CamundaEngine
+Start a C7 engine, with CamundaPostConstruct to create a process instance
+
+## org.camunda.worker.SimpleWorker
+A simple external worker
+

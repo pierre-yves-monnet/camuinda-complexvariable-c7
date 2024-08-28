@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Complex Data Customer, woith firstName, lastName, age, listOfPreferateColors
+ * Complex Data Customer, with firstName, lastName, age, listOfPreferateColors
+ * ATTENTION: the serializer use get() method do serialize in JSON
  */
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
